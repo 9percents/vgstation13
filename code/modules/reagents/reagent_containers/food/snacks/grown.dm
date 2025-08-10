@@ -386,6 +386,8 @@ var/list/strange_seed_product_blacklist = subtypesof(/obj/item/weapon/reagent_co
 			var/obj/item/weapon/cell/potato/pocell = new /obj/item/weapon/cell/potato(user.loc)
 			pocell.maxcharge = src.potency * 10
 			pocell.charge = pocell.maxcharge
+			pocell.charge_rate = max(src.potency/10,1)
+			pocell.desc = "A rechargeable starch based power cell. Starchy enough to charge itself."
 			qdel(src)
 			return
 

@@ -140,6 +140,21 @@
 	minor_fault = 1
 	starch_cell = 1
 	rating = 0
+	var/charge_rate = 0
+
+/obj/item/weapon/cell/potato/New()
+	..()
+	processing_objects.Add(src)
+
+/obj/item/weapon/cell/potato/Destroy()
+	..()
+	processing_objects.Remove(src)
+
+/obj/item/weapon/cell/potato/process()
+	if(maxcharge <= charge || charge_rate == 0)
+		return 0
+	var/power_used = min(maxcharge-charge,charge_rate)
+	charge += power_used
 
 /obj/item/weapon/cell/potato/soviet
 	charge = 15000
